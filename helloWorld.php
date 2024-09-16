@@ -262,8 +262,8 @@ function checkDonor($age, $weight)
     } else {
         echo "Kandydat nie spełnia warunku wieku $requiredAge lat.";
         return false;
-    } 
     }
+}
 
 
 checkDonor(19, 60);
@@ -271,7 +271,69 @@ echo "<br>";
 checkDonor(34, 49);
 echo "<br>";
 checkDonor(15, 55);
+echo "<br>";
 
 
+// var_dump($_SERVER);
+
+
+/*
+$filename = "fileWriteTest.txt";
+if(!is_file($filename)){
+    $file = fopen($filename, "w");
+
+    fwrite($file, "Hello 1 \n");
+    fwrite($file, "Hello 2 \n");
+    fwrite($file, "Hello 3 \n");
+
+    fclose($file);
+}
+*/
+
+/*
+$filename = "fileWriteTest.txt";
+if (is_file($filename)) {
+    $file = fopen($filename, "a");
+
+    $content = "test 1 \ntest 2\ntest 3\n";
+
+    if (fwrite($file, $content) === false) {
+        die("Nie mozna zapisac do pliku");
+    }
+
+    fclose($file);
+}
+*/
+
+/*
+$url = "https://filesamples.com/samples/document/txt/sample3.txt";
+
+$data = file_get_contents($url);
+
+file_put_contents("contentFromNet.txt", $data);
+*/
+
+
+$filename = "visits.txt";
+
+if (!is_file($filename)) {
+    file_put_contents($filename, "0");
+    $numVisits = 0;
+} 
+    $file = fopen($filename, "r+");
+
+   if (flock($file, LOCK_EX)) {
+        $num = (int)fread($file, filesize($filename));
+        $num++;
+
+        fseek($file, 0);
+        fwrite($file, $num);
+
+        flock($file, LOCK_UN);
+        fclose($file);
+        $numVisits = $num;
+   }
+
+echo("Licznik odwiedzin: $numVisits");
 
 ?>
