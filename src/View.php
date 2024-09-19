@@ -9,7 +9,6 @@ class View
 {
     public function render(?string $page): void
     {
-        dump($page);
         include_once("templates/layout.php");
     }
 }

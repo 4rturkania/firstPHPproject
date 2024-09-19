@@ -3,6 +3,6 @@
   <div>
     Tutaj będzie formularz dla nowej notatki:
 
-    <b><?php echo $params['resultCrate'] ?></b>
+    <!-- <b><?php echo $params['resultCrate'] ?></b> -->
   </div>
 </div>
